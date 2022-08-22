@@ -1,0 +1,173 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    tools:context=".screens.CatalogFragment"
+    android:orientation="vertical">
+
+    <androidx.appcompat.widget.Toolbar
+        android:id="@+id/toolbar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/white"
+        android:elevation="2dp">
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Корзина"
+            android:textSize="18sp"
+            android:textColor="@color/black"
+            android:gravity="center" />
+    </androidx.appcompat.widget.Toolbar>
+
+    <androidx.core.widget.NestedScrollView
+        android:id="@+id/scroll"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginHorizontal="8dp">
+
+
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp">
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/basketRecycler"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:nestedScrollingEnabled="false" />
+
+            <TextView
+                android:id="@+id/amount"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:layout_constraintTop_toBottomOf="@id/basketRecycler"
+                app:layout_constraintStart_toStartOf="parent"
+                android:text="Сумма"
+                android:textSize="18sp"
+                android:textStyle="bold"
+                android:textColor="@color/black"
+                android:layout_marginTop="16dp"/>
+
+            <TextView
+                android:id="@+id/goods"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:layout_constraintTop_toBottomOf="@id/amount"
+                app:layout_constraintStart_toStartOf="parent"
+                android:text="Товары"
+                android:textSize="14sp"
+                android:textColor="@color/black"
+                android:layout_marginTop="16dp"/>
+
+            <View
+                android:id="@+id/line"
+                android:layout_width="0dp"
+                android:layout_height="0.5dp"
+                app:layout_constraintStart_toEndOf="@id/goods"
+                app:layout_constraintEnd_toStartOf="@id/price_goods"
+                app:layout_constraintBottom_toBottomOf="@id/goods"
+                android:background="@color/not_selected"/>
+
+            <TextView
+                android:id="@+id/price_goods"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:layout_constraintTop_toBottomOf="@id/amount"
+                app:layout_constraintEnd_toEndOf="parent"
+                android:text="70"
+                android:textSize="14sp"
+                android:textColor="@color/black"
+                android:layout_marginTop="16dp"/>
+
+            <TextView
+                android:id="@+id/delivery"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:layout_constraintTop_toBottomOf="@id/goods"
+                app:layout_constraintStart_toStartOf="parent"
+                android:text="Доставка"
+                android:textSize="14sp"
+                android:textColor="@color/black"
+                android:layout_marginTop="8dp"/>
+
+            <View
+                android:id="@+id/line2"
+                android:layout_width="0dp"
+                android:layout_height="0.5dp"
+                app:layout_constraintStart_toEndOf="@id/delivery"
+                app:layout_constraintEnd_toStartOf="@id/price_delivery"
+                app:layout_constraintBottom_toBottomOf="@id/delivery"
+                android:background="@color/not_selected"/>
+
+            <TextView
+                android:id="@+id/price_delivery"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:layout_constraintTop_toBottomOf="@id/goods"
+                app:layout_constraintEnd_toEndOf="parent"
+                android:text="150"
+                android:textSize="14sp"
+                android:textColor="@color/black"
+                android:layout_marginTop="8dp"/>
+
+
+            <TextView
+                android:id="@+id/total"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:layout_constraintTop_toBottomOf="@id/delivery"
+                app:layout_constraintStart_toStartOf="parent"
+                android:text="Итого"
+                android:textSize="14sp"
+                android:textColor="@color/black"
+                android:layout_marginTop="8dp"/>
+
+            <View
+                android:id="@+id/line3"
+                android:layout_width="0dp"
+                android:layout_height="0.5dp"
+                app:layout_constraintStart_toEndOf="@id/total"
+                app:layout_constraintEnd_toStartOf="@id/price_total"
+                app:layout_constraintBottom_toBottomOf="@id/total"
+                android:background="@color/not_selected"/>
+
+            <TextView
+                android:id="@+id/price_total"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:layout_constraintTop_toBottomOf="@id/delivery"
+                app:layout_constraintEnd_toEndOf="parent"
+                android:text="2200"
+                android:textSize="14sp"
+                android:textColor="@color/black"
+                android:layout_marginTop="8dp"/>
+
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:background="@drawable/place_an_order_back"
+                app:layout_constraintTop_toBottomOf="@id/total"
+                android:layout_marginHorizontal="16dp"
+                android:layout_marginTop="16dp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                android:text="Оформить заказ"
+                android:gravity="center_vertical|center_horizontal"
+                android:textSize="16sp"
+                android:textColor="@color/white"
+                android:padding="8dp" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+    </androidx.core.widget.NestedScrollView>
+
+</LinearLayout>

@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/nav"
+    app:startDestination="@id/catalogFragment">
+
+    <fragment
+        android:id="@+id/catalogFragment"
+        android:name="com.example.sweetshop.screens.CatalogFragment"
+        android:label="fragment_catalog"
+        tools:layout="@layout/fragment_catalog" >
+        <action
+            android:id="@+id/action_catalogFragment_to_productCard"
+            app:destination="@id/productCard" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/basketFragment"
+        android:name="com.example.sweetshop.screens.BasketFragment"
+        android:label="fragment_basket"
+        tools:layout="@layout/fragment_basket" />
+
+    <dialog
+        android:id="@+id/productCard"
+        android:name="com.example.sweetshop.screens.ProductCard"
+        android:label="ProductCard" >
+        <action
+            android:id="@+id/action_productCard_to_catalogFragment"
+            app:destination="@id/catalogFragment" />
+        <argument
+            android:name="currentProduct"
+            app:argType="com.example.sweetshop.model.Products" />
+    </dialog>
+</navigation>
