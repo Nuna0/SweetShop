@@ -60,7 +60,7 @@ dependencies {
     kapt 'com.github.bumptech.glide:compiler:4.13.0'
 
     //Coil
-    implementation "io.coil-kt:coil:2.1.0"
+    //implementation "io.coil-kt:coil:2.1.0"
 
     //network
     implementation 'com.squareup.retrofit2:retrofit:2.9.0'
@@ -75,5 +75,11 @@ dependencies {
     implementation "androidx.recyclerview:recyclerview:1.2.0-alpha04"
 
     implementation "de.hdodenhof:circleimageview:3.1.0"
+
+    //Room
+    implementation "androidx.room:room-ktx:2.3.0"
+    kapt "androidx.room:room-compiler:2.3.0"
+    androidTestImplementation "androidx.room:room-testing:2.3.0"
+
 
 }

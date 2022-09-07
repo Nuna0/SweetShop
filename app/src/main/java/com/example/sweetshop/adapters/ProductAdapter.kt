@@ -5,21 +5,35 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.TextView
+import android.widget.Toast
 import androidx.appcompat.widget.AppCompatButton
+import androidx.fragment.app.Fragment
+import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.findNavController
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
+import com.bumptech.glide.load.engine.DiskCacheStrategy
 import com.bumptech.glide.load.resource.bitmap.CenterCrop
 import com.bumptech.glide.load.resource.bitmap.GranularRoundedCorners
 import com.bumptech.glide.load.resource.bitmap.RoundedCorners
 import com.bumptech.glide.request.RequestOptions
 import com.example.sweetshop.R
+import com.example.sweetshop.database.ProductsInBasket
+import com.example.sweetshop.database.RoomViewModel
 import com.example.sweetshop.model.Products
 import com.example.sweetshop.screens.CatalogFragmentDirections
+import com.example.sweetshop.viewmodel.MainViewModel
+import kotlinx.coroutines.InternalCoroutinesApi
 
+@InternalCoroutinesApi
 class ProductAdapter(
+    val activity: Fragment,
+   // var addProduct:(ProductsInBasket)->Unit
 ) : RecyclerView.Adapter<ProductAdapter.ViewHolder>(){
     private  var item = arrayListOf<Products>()
+
+
+    private lateinit var viewModel: RoomViewModel
 
     override fun onCreateViewHolder(
         parent: ViewGroup,
@@ -50,7 +64,7 @@ class ProductAdapter(
         notifyDataSetChanged()
     }
 
-    class ViewHolder(itemView: View): RecyclerView.ViewHolder(itemView) {
+    inner class ViewHolder(itemView: View): RecyclerView.ViewHolder(itemView) {
         val nameProduct: TextView = itemView.findViewById(R.id.nameProduct)
         val massProduct: TextView = itemView.findViewById(R.id.massProduct)
         val image: ImageView = itemView.findViewById(R.id.image)
@@ -58,21 +72,31 @@ class ProductAdapter(
         val plusBtn: TextView = itemView.findViewById(R.id.plusProduct)
         val minusBtn: TextView = itemView.findViewById(R.id.minusProduct)
         val countProduct: TextView = itemView.findViewById(R.id.countProduct)
+        val price: TextView = itemView.findViewById(R.id.price)
+
 
         var count = 1
 
         fun bind(model: Products){
+
             nameProduct.text = model.name
-            massProduct.text = model.mass
-           Glide.with(itemView.context)
-               .load(model.image)
-               .centerCrop()
-               .apply {
-                   RequestOptions().apply {
-                       transform(CenterCrop(), GranularRoundedCorners(24f, 24f, 0f, 0f))
-                   }
-               }
-               .into(image)
+            massProduct.text = itemView.context.getString(R.string.mass, model.mass)
+            price.text = itemView.context.getString(R.string.price, model.price)
+
+            Glide.with(itemView.context)
+                .load(model.image)
+                .diskCacheStrategy(DiskCacheStrategy.RESOURCE)
+                .into(image)
+
+            val id = model.idProduct.toInt()
+
+            if (countProduct.getText().toString().toInt()>0){
+                val product = ProductsInBasket(id,model.name,model.image,model.price,model.presence,model.mass, model.category)
+
+                viewModel = ViewModelProvider(activity)[RoomViewModel::class.java]
+                viewModel.addTask(product)
+                Toast.makeText(itemView.context, "Данные сохранены", Toast.LENGTH_SHORT).show()
+            }
 
             addBtn.setOnClickListener {
                 addBtn.visibility = View.GONE

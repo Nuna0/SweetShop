@@ -4,20 +4,25 @@ import android.annotation.SuppressLint
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.ImageView
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
+import com.bumptech.glide.Glide
+import com.bumptech.glide.load.resource.bitmap.RoundedCorners
+import com.bumptech.glide.request.RequestOptions
 import com.example.sweetshop.R
 import com.example.sweetshop.model.Catalog
+import com.example.sweetshop.model.Header
 
 class HeaderAdapter : RecyclerView.Adapter<HeaderAdapter.ViewHolder>() {
-    private var item = arrayListOf<Catalog>()
+    private var item = arrayListOf<Header>()
 
     override fun onCreateViewHolder(
         parent: ViewGroup,
         viewType: Int
     ): ViewHolder {
         val itemView = LayoutInflater.from(parent.context).inflate(
-            R.layout.item_header,
+            R.layout.item_header_recycler,
             parent,
             false
         )
@@ -35,7 +40,7 @@ class HeaderAdapter : RecyclerView.Adapter<HeaderAdapter.ViewHolder>() {
     }
 
     @SuppressLint("NotifyDataSetChanged")
-    fun setData(model: ArrayList<Catalog>) {
+    fun setData(model: ArrayList<Header>) {
         item.run {
             clear()
             addAll(model)
@@ -46,12 +51,13 @@ class HeaderAdapter : RecyclerView.Adapter<HeaderAdapter.ViewHolder>() {
 
     inner class ViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
 
-        val nameCategory: TextView = itemView.findViewById(R.id.nameCategory)
+        val image: ImageView = itemView.findViewById(R.id.image_ofFirstRec)
 
-        fun bind(model: Catalog) {
+        fun bind(model: Header) {
 
-            nameCategory.text = model.nameCategory
-            // productAdapter.setData(model.products as ArrayList)
+            Glide.with(itemView.context).load(model.imgMin)
+                .apply(RequestOptions.bitmapTransform(RoundedCorners(20)))
+                .into(image)            // productAdapter.setData(model.products as ArrayList)
 
         }
     }

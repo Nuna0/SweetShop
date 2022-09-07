@@ -9,4 +9,6 @@
     <color name="white">#FFFFFFFF</color>
     <color name="not_selected">#E8E6E6</color>
     <color name="back_cardview">#F5F4F2</color>
+    <color name="back_of_selected_category">#EAE9E7</color>
+    <color name="color_phone_write_button">#CDCCC9</color>
 </resources>

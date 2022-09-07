@@ -9,7 +9,9 @@ data class MainModel(
     @SerializedName("allCategory")
     val categories: ArrayList<Categories>,
     @SerializedName("items")
-    val catalog: ArrayList<Catalog>
+    val catalog: ArrayList<Catalog>,
+    @SerializedName("headers")
+    val header: ArrayList<Header>
 ) :Parcelable
 
 @Parcelize
@@ -41,9 +43,19 @@ data class Products(
     @SerializedName("price")
     val price: String,
     @SerializedName("presence")
-    val presence: String,
+    val presence: String?,
     @SerializedName("mass")
     val mass: String,
     @SerializedName("category")
     val category: String,
+):Parcelable
+
+@Parcelize
+data class Header(
+    @SerializedName("imgMin")
+    val imgMin: String,
+    @SerializedName("imgMax")
+    val imgMax: ArrayList<String>,
+    @SerializedName("id")
+    val idHeader: String,
 ):Parcelable

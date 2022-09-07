@@ -7,30 +7,30 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.navigation.fragment.findNavController
 import com.example.sweetshop.R
-import com.example.sweetshop.databinding.FragmentBasketBinding
+import com.example.sweetshop.databinding.FragmentCatalogBinding
+import com.example.sweetshop.databinding.FragmentPlaceOrderBinding
 
-class BasketFragment : Fragment() {
 
-    private  var _binding: FragmentBasketBinding?=null
-    private  val binding get() = _binding!!
+class PlaceOrderFragment : Fragment() {
+
+    private var _binding: FragmentPlaceOrderBinding?=null
+    private val binding get() = _binding!!
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
         // Inflate the layout for this fragment
-        _binding = FragmentBasketBinding.inflate(inflater, container, false)
+        _binding = FragmentPlaceOrderBinding.inflate(inflater, container, false)
         return binding.root
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        binding.btnPlaceOrder.setOnClickListener {
-            findNavController().navigate(R.id.action_basketFragment_to_placeOrderFragment)
+        binding.goBack.setOnClickListener {
+            findNavController().popBackStack()
         }
     }
-
-
 
 }

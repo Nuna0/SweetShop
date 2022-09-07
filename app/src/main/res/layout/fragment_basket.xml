@@ -26,15 +26,13 @@
     <androidx.core.widget.NestedScrollView
         android:id="@+id/scroll"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginHorizontal="8dp">
-
-
+        android:layout_height="wrap_content">
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="8dp">
+            android:layout_marginTop="8dp"
+            android:layout_marginHorizontal="16dp">
 
             <androidx.recyclerview.widget.RecyclerView
                 android:id="@+id/basketRecycler"
@@ -64,7 +62,7 @@
                 app:layout_constraintTop_toBottomOf="@id/amount"
                 app:layout_constraintStart_toStartOf="parent"
                 android:text="Товары"
-                android:textSize="14sp"
+                android:textSize="12sp"
                 android:textColor="@color/black"
                 android:layout_marginTop="16dp"/>
 
@@ -84,7 +82,7 @@
                 app:layout_constraintTop_toBottomOf="@id/amount"
                 app:layout_constraintEnd_toEndOf="parent"
                 android:text="70"
-                android:textSize="14sp"
+                android:textSize="12sp"
                 android:textColor="@color/black"
                 android:layout_marginTop="16dp"/>
 
@@ -95,7 +93,7 @@
                 app:layout_constraintTop_toBottomOf="@id/goods"
                 app:layout_constraintStart_toStartOf="parent"
                 android:text="Доставка"
-                android:textSize="14sp"
+                android:textSize="12sp"
                 android:textColor="@color/black"
                 android:layout_marginTop="8dp"/>
 
@@ -115,7 +113,7 @@
                 app:layout_constraintTop_toBottomOf="@id/goods"
                 app:layout_constraintEnd_toEndOf="parent"
                 android:text="150"
-                android:textSize="14sp"
+                android:textSize="12sp"
                 android:textColor="@color/black"
                 android:layout_marginTop="8dp"/>
 
@@ -127,7 +125,7 @@
                 app:layout_constraintTop_toBottomOf="@id/delivery"
                 app:layout_constraintStart_toStartOf="parent"
                 android:text="Итого"
-                android:textSize="14sp"
+                android:textSize="12sp"
                 android:textColor="@color/black"
                 android:layout_marginTop="8dp"/>
 
@@ -147,22 +145,22 @@
                 app:layout_constraintTop_toBottomOf="@id/delivery"
                 app:layout_constraintEnd_toEndOf="parent"
                 android:text="2200"
-                android:textSize="14sp"
+                android:textSize="12sp"
                 android:textColor="@color/black"
                 android:layout_marginTop="8dp"/>
 
             <TextView
+                android:id="@+id/btn_place_order"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:background="@drawable/place_an_order_back"
                 app:layout_constraintTop_toBottomOf="@id/total"
-                android:layout_marginHorizontal="16dp"
                 android:layout_marginTop="16dp"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 android:text="Оформить заказ"
                 android:gravity="center_vertical|center_horizontal"
-                android:textSize="16sp"
+                android:textSize="14sp"
                 android:textColor="@color/white"
                 android:padding="8dp" />
 

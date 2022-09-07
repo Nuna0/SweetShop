@@ -19,7 +19,11 @@
         android:id="@+id/basketFragment"
         android:name="com.example.sweetshop.screens.BasketFragment"
         android:label="fragment_basket"
-        tools:layout="@layout/fragment_basket" />
+        tools:layout="@layout/fragment_basket" >
+        <action
+            android:id="@+id/action_basketFragment_to_placeOrderFragment"
+            app:destination="@id/placeOrderFragment" />
+    </fragment>
 
     <dialog
         android:id="@+id/productCard"
@@ -32,4 +36,31 @@
             android:name="currentProduct"
             app:argType="com.example.sweetshop.model.Products" />
     </dialog>
+    <fragment
+        android:id="@+id/contactsFragment"
+        android:name="com.example.sweetshop.screens.ContactsFragment"
+        android:label="fragment_contacts"
+        tools:layout="@layout/fragment_contacts" >
+        <action
+            android:id="@+id/action_contactsFragment_to_mapFragment"
+            app:destination="@id/mapFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/mapFragment"
+        android:name="com.example.sweetshop.screens.MapFragment"
+        android:label="fragment_map"
+        tools:layout="@layout/fragment_map" >
+        <action
+            android:id="@+id/action_mapFragment_to_contactsFragment"
+            app:destination="@id/contactsFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/placeOrderFragment"
+        android:name="com.example.sweetshop.screens.PlaceOrderFragment"
+        android:label="fragment_place_order"
+        tools:layout="@layout/fragment_place_order" >
+        <action
+            android:id="@+id/action_placeOrderFragment_to_basketFragment"
+            app:destination="@id/basketFragment" />
+    </fragment>
 </navigation>
