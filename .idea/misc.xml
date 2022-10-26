@@ -21,17 +21,19 @@
         <entry key="..\:/Users/myrka/SweetShop/app/src/main/res/drawable/menu_btn_basket_selector.xml" value="0.2703125" />
         <entry key="..\:/Users/myrka/SweetShop/app/src/main/res/drawable/menu_btn_catalog_selector.xml" value="0.2703125" />
         <entry key="..\:/Users/myrka/SweetShop/app/src/main/res/drawable/place_an_order_back.xml" value="0.21574074074074073" />
+        <entry key="..\:/Users/myrka/SweetShop/app/src/main/res/drawable/plus_minus_btn_cream.xml" value="0.2703125" />
         <entry key="..\:/Users/myrka/SweetShop/app/src/main/res/drawable/selected_category.xml" value="0.2703125" />
         <entry key="..\:/Users/myrka/SweetShop/app/src/main/res/drawable/shadow.xml" value="0.15185185185185185" />
         <entry key="..\:/Users/myrka/SweetShop/app/src/main/res/drawable/topline_of_dialog.xml" value="0.2703125" />
         <entry key="..\:/Users/myrka/SweetShop/app/src/main/res/layout/activity_main.xml" value="0.152" />
-        <entry key="..\:/Users/myrka/SweetShop/app/src/main/res/layout/fragment_basket.xml" value="0.23854166666666668" />
+        <entry key="..\:/Users/myrka/SweetShop/app/src/main/res/layout/fragment_basket.xml" value="0.176" />
         <entry key="..\:/Users/myrka/SweetShop/app/src/main/res/layout/fragment_catalog.xml" value="0.264" />
         <entry key="..\:/Users/myrka/SweetShop/app/src/main/res/layout/fragment_contacts.xml" value="0.23854166666666668" />
         <entry key="..\:/Users/myrka/SweetShop/app/src/main/res/layout/fragment_map.xml" value="0.25416666666666665" />
         <entry key="..\:/Users/myrka/SweetShop/app/src/main/res/layout/fragment_place_order.xml" value="0.264" />
         <entry key="..\:/Users/myrka/SweetShop/app/src/main/res/layout/fragment_product_card.xml" value="0.25416666666666665" />
         <entry key="..\:/Users/myrka/SweetShop/app/src/main/res/layout/item_baner_images.xml" value="0.23854166666666668" />
+        <entry key="..\:/Users/myrka/SweetShop/app/src/main/res/layout/item_basket_product_recycler.xml" value="0.25416666666666665" />
         <entry key="..\:/Users/myrka/SweetShop/app/src/main/res/layout/item_catalog_recycler.xml" value="0.25416666666666665" />
         <entry key="..\:/Users/myrka/SweetShop/app/src/main/res/layout/item_category_recycler.xml" value="0.25416666666666665" />
         <entry key="..\:/Users/myrka/SweetShop/app/src/main/res/layout/item_header.xml" value="0.1286231884057971" />

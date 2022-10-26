@@ -1,5 +1,8 @@
 package com.example.sweetshop.adapters
 
+import android.content.Context
+import android.content.SharedPreferences
+import android.view.HapticFeedbackConstants
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -7,6 +10,8 @@ import android.widget.ImageView
 import android.widget.TextView
 import android.widget.Toast
 import androidx.appcompat.widget.AppCompatButton
+import androidx.cardview.widget.CardView
+import androidx.core.view.isVisible
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.findNavController
@@ -26,11 +31,12 @@ import com.example.sweetshop.viewmodel.MainViewModel
 import kotlinx.coroutines.InternalCoroutinesApi
 
 @InternalCoroutinesApi
-class ProductAdapter(
+ class ProductAdapter(
     val activity: Fragment,
    // var addProduct:(ProductsInBasket)->Unit
 ) : RecyclerView.Adapter<ProductAdapter.ViewHolder>(){
     private  var item = arrayListOf<Products>()
+    lateinit var sharedPreferences: SharedPreferences
 
 
     private lateinit var viewModel: RoomViewModel
@@ -44,6 +50,9 @@ class ProductAdapter(
             parent,
             false
         )
+
+        sharedPreferences = parent.context.getSharedPreferences("Count", Context.MODE_PRIVATE)
+
         return ViewHolder(itemView)
     }
 
@@ -73,15 +82,69 @@ class ProductAdapter(
         val minusBtn: TextView = itemView.findViewById(R.id.minusProduct)
         val countProduct: TextView = itemView.findViewById(R.id.countProduct)
         val price: TextView = itemView.findViewById(R.id.price)
+        val cardView: CardView = itemView.findViewById(R.id.cardView)
 
 
         var count = 1
+
+        private fun saveCount(id: Int, number: Int) {
+            sharedPreferences = itemView.context.getSharedPreferences("Count", Context.MODE_PRIVATE)
+            sharedPreferences.edit().putInt(id.toString(), number).apply()
+        }
+
+        private fun loadCount(id: Int): Int {
+            sharedPreferences = image.context.getSharedPreferences("Count", Context.MODE_PRIVATE)
+            return sharedPreferences.getInt(id.toString(), 0)
+        }
+
+        private fun deleteCount(id: Int) {
+            sharedPreferences = itemView.context.getSharedPreferences("Count", Context.MODE_PRIVATE)
+            sharedPreferences.edit().remove(id.toString()).apply()
+        }
+
+        fun addProductToBasket(model: Products){
+            val id = model.idProduct.toInt()
+
+            Glide.with(itemView.context)
+                .load(model.image)
+                .diskCacheStrategy(DiskCacheStrategy.RESOURCE)
+                .into(image)
+            //Toast.makeText(itemView.context, "Данные сохранены", Toast.LENGTH_SHORT).show()
+            val product = ProductsInBasket(
+                id,
+                model.name,
+                model.image,
+                model.price,
+                count.toString(),
+                model.mass,
+                model.category
+            )
+            viewModel = ViewModelProvider(activity)[RoomViewModel::class.java]
+            viewModel.addTask(product)
+
+        }
+         fun deleteProductFromBasket(model: Products){
+             val id = model.idProduct.toInt()
+             val product = ProductsInBasket(
+                 id,
+                 model.name,
+                 model.image,
+                 model.price,
+                 count.toString(),
+                 model.mass,
+                 model.category
+             )
+             viewModel = ViewModelProvider(activity)[RoomViewModel::class.java]
+             viewModel.deleteTask(product)
+         }
 
         fun bind(model: Products){
 
             nameProduct.text = model.name
             massProduct.text = itemView.context.getString(R.string.mass, model.mass)
             price.text = itemView.context.getString(R.string.price, model.price)
+            count= loadCount(model.idProduct.toInt())
+            countProduct.text = count.toString()
 
             Glide.with(itemView.context)
                 .load(model.image)
@@ -90,50 +153,94 @@ class ProductAdapter(
 
             val id = model.idProduct.toInt()
 
-            if (countProduct.getText().toString().toInt()>0){
-                val product = ProductsInBasket(id,model.name,model.image,model.price,model.presence,model.mass, model.category)
+            if(count<=0){
+                addBtn.visibility = View.VISIBLE
+                plusBtn.visibility = View.GONE
+                minusBtn.visibility = View.GONE
+                countProduct.visibility = View.GONE
 
-                viewModel = ViewModelProvider(activity)[RoomViewModel::class.java]
-                viewModel.addTask(product)
-                Toast.makeText(itemView.context, "Данные сохранены", Toast.LENGTH_SHORT).show()
-            }
-
-            addBtn.setOnClickListener {
+            }else{
                 addBtn.visibility = View.GONE
                 plusBtn.visibility = View.VISIBLE
                 minusBtn.visibility = View.VISIBLE
                 countProduct.visibility = View.VISIBLE
-                countProduct.setText("1")
+            }
+
+
+            addBtn.setOnClickListener {
+
+                count = Integer.parseInt(countProduct.text.toString())+1
+                countProduct.text = count.toString()
+                saveCount(model.idProduct.toInt(), count)
+
+                minusBtn.isEnabled = true
+                plusBtn.isEnabled = true
+                if(count<=0){
+                    addBtn.visibility = View.VISIBLE
+                    plusBtn.visibility = View.GONE
+                    minusBtn.visibility = View.GONE
+                    countProduct.visibility = View.GONE
+                    deleteProductFromBasket(model)
+                }else{
+                    addBtn.visibility = View.GONE
+                    plusBtn.visibility = View.VISIBLE
+                    minusBtn.visibility = View.VISIBLE
+                    countProduct.visibility = View.VISIBLE
+                    addProductToBasket(model)
+                }
+
             }
 
             plusBtn.setOnClickListener {
-                count = countProduct.getText().toString().toInt() + 1
-                countProduct.setText(count.toString())
+                it.performHapticFeedback(HapticFeedbackConstants.VIRTUAL_KEY)
+                cardView.performHapticFeedback(HapticFeedbackConstants.VIRTUAL_KEY)
+                count = Integer.parseInt(countProduct.text.toString())+1
+                countProduct.text = count.toString()
+                saveCount(model.idProduct.toInt(), count)
+
                 minusBtn.isEnabled = true
                 plusBtn.isEnabled = true
-                if(count<=1){
+                if(count<=0){
                     addBtn.visibility = View.VISIBLE
                     plusBtn.visibility = View.GONE
                     minusBtn.visibility = View.GONE
                     countProduct.visibility = View.GONE
+                    deleteProductFromBasket(model)
+
+                }else{
+                    addBtn.visibility = View.GONE
+                    plusBtn.visibility = View.VISIBLE
+                    minusBtn.visibility = View.VISIBLE
+                    countProduct.visibility = View.VISIBLE
+                    addProductToBasket(model)
                 }
+
             }
 
             minusBtn.setOnClickListener {
-                if(count<=1){
+                it.performHapticFeedback(HapticFeedbackConstants.FLAG_IGNORE_VIEW_SETTING)
+                count = Integer.parseInt(countProduct.text.toString())-1
+                countProduct.text = count.toString()
+                deleteCount(model.idProduct.toInt())
+                minusBtn.isEnabled = true
+                plusBtn.isEnabled = true
+                if(count<=0){
                     addBtn.visibility = View.VISIBLE
                     plusBtn.visibility = View.GONE
                     minusBtn.visibility = View.GONE
-
                     countProduct.visibility = View.GONE
+                    deleteProductFromBasket(model)
+
                 }else {
-                    count = countProduct.getText().toString().toInt() - 1
-                    countProduct.setText(count.toString())
-                    minusBtn.isEnabled = true
-                    plusBtn.isEnabled = true
+                    addBtn.visibility = View.GONE
+                    plusBtn.visibility = View.VISIBLE
+                    minusBtn.visibility = View.VISIBLE
+                    countProduct.visibility = View.VISIBLE
+                    addProductToBasket(model)
                 }
 
             }
+
 
             itemView.setOnClickListener {
                 val action = CatalogFragmentDirections.actionCatalogFragmentToProductCard(model)

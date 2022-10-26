@@ -7,7 +7,7 @@ import androidx.room.RoomDatabase
 import androidx.room.TypeConverters
 import kotlinx.coroutines.InternalCoroutinesApi
 
-@Database(entities = [ProductsInBasket::class],version = 2,exportSchema = false)
+@Database(entities = [ProductsInBasket::class],version = 3,exportSchema = false)
 abstract  class RoomDataBase : RoomDatabase() {
 
     abstract  fun roomDao(): RoomDao
