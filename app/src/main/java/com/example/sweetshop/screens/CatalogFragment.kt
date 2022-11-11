@@ -10,14 +10,13 @@ import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.ConcatAdapter
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
-import com.example.sweetshop.adapters.CatalogAdapter
-import com.example.sweetshop.adapters.CategoryAdapter
-import com.example.sweetshop.adapters.ProductAdapter
+import com.example.sweetshop.adapters.*
 import com.example.sweetshop.databinding.FragmentCatalogBinding
 import com.example.sweetshop.model.Products
 import com.example.sweetshop.repository.Repository
 import com.example.sweetshop.viewmodel.MainViewModel
 import com.example.sweetshop.viewmodel.MainViewModelFactory
+import kotlinx.android.synthetic.main.fragment_catalog.*
 import kotlinx.coroutines.InternalCoroutinesApi
 
 @InternalCoroutinesApi
@@ -31,6 +30,7 @@ class CatalogFragment : Fragment() {
     val viewModelFactory = MainViewModelFactory(repository)
 
     private  val catalogAdapter by lazy { CatalogAdapter(this) }
+    private  val headerAdapter by lazy { HeaderAdapter() }
     private var indexItemRv  = 0
 
     override fun onCreateView(
@@ -86,8 +86,10 @@ class CatalogFragment : Fragment() {
         val recyclerCatalog = binding.catalogRecycler
         viewModel.getMainModel()
         viewModel.mainResponse.observe(this, Observer { response->
-
+            headerAdapter.setData(response.header)
+            actualRecycler.adapter = headerAdapter
             catalogAdapter.setData(response.catalog)
+            //containerHeaderAdapter.setData(response.header)
             recyclerCatalog.layoutManager = LinearLayoutManager(requireContext())
             recyclerCatalog.adapter = catalogAdapter
 

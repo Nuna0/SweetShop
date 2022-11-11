@@ -13,6 +13,12 @@
         <action
             android:id="@+id/action_catalogFragment_to_productCard"
             app:destination="@id/productCard" />
+        <action
+            android:id="@+id/action_catalogFragment_to_headerOpenFragment"
+            app:destination="@id/headerOpenFragment" />
+        <action
+            android:id="@+id/action_catalogFragment_to_openHeaderActivity"
+            app:destination="@id/openHeaderActivity" />
     </fragment>
 
     <fragment
@@ -63,4 +69,25 @@
             android:id="@+id/action_placeOrderFragment_to_basketFragment"
             app:destination="@id/basketFragment" />
     </fragment>
+    <fragment
+        android:id="@+id/headerOpenFragment"
+        android:name="com.example.sweetshop.screens.HeaderOpenFragment"
+        android:label="fragment_header_open"
+        tools:layout="@layout/fragment_header_open" >
+        <action
+            android:id="@+id/action_headerOpenFragment_to_catalogFragment"
+            app:destination="@id/catalogFragment" />
+        <argument
+            android:name="header"
+            app:argType="com.example.sweetshop.model.Header" />
+    </fragment>
+    <activity
+        android:id="@+id/openHeaderActivity"
+        android:name="com.example.sweetshop.screens.OpenHeaderActivity"
+        android:label="activity_open_header"
+        tools:layout="@layout/activity_open_header" >
+        <argument
+            android:name="header"
+            app:argType="com.example.sweetshop.model.Header" />
+    </activity>
 </navigation>

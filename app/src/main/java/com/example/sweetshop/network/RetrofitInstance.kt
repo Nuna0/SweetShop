@@ -22,7 +22,20 @@ object RetrofitInstance {
             .build()
     }
 
+    private val retrofitTgBot by lazy{
+        Retrofit.Builder()
+            .baseUrl(Constants.TG_URL)
+            .addConverterFactory(GsonConverterFactory.create())
+            .client(clientSetup)
+            .build()
+    }
+
+
     val api: MainApi by lazy {
         retrofit.create(MainApi::class.java)
+    }
+
+    val apiTgBot: MainApi by lazy {
+        retrofitTgBot.create(MainApi::class.java)
     }
 }

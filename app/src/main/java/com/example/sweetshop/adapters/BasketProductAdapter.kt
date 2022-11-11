@@ -9,6 +9,7 @@ import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
+import com.example.sweetshop.R
 import com.example.sweetshop.database.ProductsInBasket
 import com.example.sweetshop.database.RoomViewModel
 import com.example.sweetshop.databinding.ItemBasketProductRecyclerBinding
@@ -20,7 +21,7 @@ class BasketProductAdapter(
 ): RecyclerView.Adapter<BasketProductAdapter.ViewHolder>() {
     private var item = arrayListOf<ProductsInBasket>()
     lateinit var sharedPreferences: SharedPreferences
-    var count=1
+    var count:Int = 0
     private lateinit var viewModel: RoomViewModel
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
@@ -70,16 +71,16 @@ class BasketProductAdapter(
 
         fun bind(model: ProductsInBasket){
 
-            count = itemBinding.countProduct.text.toString().toInt()
            /* if(count!=itemBinding.countProduct.text.toString().toInt()){
                 count = loadCount(model.idProduct)
             }*/
 
             with(itemBinding){
                 title.text = model.name
-                mass.text = model.mass
-                price.text = model.price
+                mass.text = itemView.context.getString(R.string.mass,model.mass)
+                price.text = itemView.context.getString(R.string.price,model.price)
                 countProduct.text = model.presence
+                count = itemBinding.countProduct.text.toString().toInt()
                 Glide.with(itemView.context).load(model.image).into(image)
 
                 minusProduct.setOnClickListener {
@@ -97,13 +98,37 @@ class BasketProductAdapter(
                         )
                         viewModel = ViewModelProvider(activity)[RoomViewModel::class.java]
                         viewModel.deleteTask(product)
+                    }else{
+                        val product = ProductsInBasket(
+                            model.idProduct,
+                            model.name,
+                            model.image,
+                            model.price,
+                            count.toString(),
+                            model.mass,
+                            model.category
+                        )
+                        viewModel = ViewModelProvider(activity)[RoomViewModel::class.java]
+                        viewModel.addTask(product)
                     }
                 }
 
                 plusProduct.setOnClickListener {
                     count = Integer.parseInt(countProduct.text.toString())+1
                     countProduct.text = count.toString()
-                    saveCount(model.idProduct,count)
+                    //saveCount(model.idProduct,count)
+
+                    val product = ProductsInBasket(
+                        model.idProduct,
+                        model.name,
+                        model.image,
+                        model.price,
+                        count.toString(),
+                        model.mass,
+                        model.category
+                    )
+                    viewModel = ViewModelProvider(activity)[RoomViewModel::class.java]
+                    viewModel.addTask(product)
                 }
             }
 

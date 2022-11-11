@@ -6,6 +6,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.TextView
+import androidx.navigation.findNavController
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.bumptech.glide.load.resource.bitmap.RoundedCorners
@@ -13,6 +14,8 @@ import com.bumptech.glide.request.RequestOptions
 import com.example.sweetshop.R
 import com.example.sweetshop.model.Catalog
 import com.example.sweetshop.model.Header
+import com.example.sweetshop.screens.CatalogFragmentDirections
+import kotlinx.android.synthetic.main.item_header_recycler.view.*
 
 class HeaderAdapter : RecyclerView.Adapter<HeaderAdapter.ViewHolder>() {
     private var item = arrayListOf<Header>()
@@ -28,16 +31,19 @@ class HeaderAdapter : RecyclerView.Adapter<HeaderAdapter.ViewHolder>() {
         )
         return ViewHolder(itemView)
     }
+    //Водка
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         val currentItem = item[position]
         holder.bind(currentItem)
 
     }
+    //Общее положение как?
 
     override fun getItemCount(): Int {
         return item.size
     }
+    //арип, я люблю тебя
 
     @SuppressLint("NotifyDataSetChanged")
     fun setData(model: ArrayList<Header>) {
@@ -59,6 +65,12 @@ class HeaderAdapter : RecyclerView.Adapter<HeaderAdapter.ViewHolder>() {
                 .apply(RequestOptions.bitmapTransform(RoundedCorners(20)))
                 .into(image)            // productAdapter.setData(model.products as ArrayList)
 
+
+            itemView.constraint.setOnClickListener {
+                val action = CatalogFragmentDirections.actionCatalogFragmentToHeaderOpenFragment(model)
+                itemView.findNavController().navigate(action)
+            }
         }
+
     }
 }

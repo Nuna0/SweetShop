@@ -37,7 +37,7 @@
                 app:layout_constraintStart_toEndOf="@id/icon_arrow"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="ВанЛав"
+                android:text="Корзина"
                 android:textSize="14sp"
                 android:textColor="@color/black"
                 android:gravity="left"
@@ -68,7 +68,7 @@
                 android:gravity="center" />
 
             <TextView
-                android:id="@+id/name"
+                android:id="@+id/txtname"
                 app:layout_constraintTop_toBottomOf="@id/placeOrder"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -81,7 +81,7 @@
                 android:id="@+id/editName"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                app:layout_constraintTop_toBottomOf="@id/name"
+                app:layout_constraintTop_toBottomOf="@id/txtname"
                 android:hint="Имя"
                 android:textSize="12sp"
                 android:textColor="@color/black"
@@ -89,7 +89,7 @@
                 android:padding="4dp" />
 
             <TextView
-                android:id="@+id/phone"
+                android:id="@+id/txtphone"
                 app:layout_constraintTop_toBottomOf="@id/editName"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -103,7 +103,7 @@
                 android:id="@+id/editPhone"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                app:layout_constraintTop_toBottomOf="@id/phone"
+                app:layout_constraintTop_toBottomOf="@id/txtphone"
                 android:hint="Номер телефона"
                 android:textSize="12sp"
                 android:textColor="@color/black"
@@ -111,7 +111,7 @@
                 android:padding="4dp" />
 
             <TextView
-                android:id="@+id/address"
+                android:id="@+id/txtaddress"
                 app:layout_constraintTop_toBottomOf="@id/editPhone"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -125,7 +125,7 @@
                 android:id="@+id/editAddress"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                app:layout_constraintTop_toBottomOf="@id/address"
+                app:layout_constraintTop_toBottomOf="@id/txtaddress"
                 app:layout_constraintEnd_toStartOf="@id/btnAddress"
                 app:layout_constraintStart_toStartOf="parent"
                 android:hint="Адрес доставки"
@@ -150,7 +150,7 @@
                 android:gravity="left" />
 
             <TextView
-                android:id="@+id/comment"
+                android:id="@+id/txtcomment"
                 app:layout_constraintTop_toBottomOf="@id/editAddress"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -164,7 +164,7 @@
                 android:id="@+id/editComment"
                 android:layout_width="match_parent"
                 android:layout_height="130dp"
-                app:layout_constraintTop_toBottomOf="@id/comment"
+                app:layout_constraintTop_toBottomOf="@id/txtcomment"
                 android:textSize="12sp"
                 android:textColor="@color/black"
                 android:background="@drawable/edittext"
@@ -174,6 +174,7 @@
 
 
             <TextView
+                android:id="@+id/btn_make_order"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="16dp"

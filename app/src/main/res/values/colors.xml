@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <color name="purple_200">#FFBB86FC</color>
+    <color name="purple_200">#E1A6BA</color>
     <color name="purple_500">#FF6200EE</color>
     <color name="purple_700">#FF3700B3</color>
     <color name="teal_200">#FF03DAC5</color>
@@ -8,8 +8,10 @@
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
     <color name="not_selected">#E8E6E6</color>
-    <color name="back_cardview">#F5F4F2</color>
+    <color name="back_cardview">#F0F0EE</color>
     <color name="back_of_selected_category">#EAE9E7</color>
     <color name="color_phone_write_button">#CDCCC9</color>
     <color name="dark_gray">#3C3A3A</color>
+    <color name="default_title_background" />
+    <color name="transparentColor">#00FFFFFF</color>
 </resources>

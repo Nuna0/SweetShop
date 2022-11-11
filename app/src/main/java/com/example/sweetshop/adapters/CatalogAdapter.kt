@@ -44,8 +44,8 @@ class CatalogAdapter(
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         val currentItem = item[position]
         holder.bind(currentItem)
-        val headerAdapter = HeaderAdapter()
-     /*   if(position==0){
+        /*val headerAdapter = HeaderAdapter()
+        if(position==0){
             viewModel = ViewModelProvider(activity,viewModelFactory).get(MainViewModel::class.java)
             viewModel.getMainModel()
             viewModel.mainResponse.observe(activity, Observer { response->
@@ -53,8 +53,7 @@ class CatalogAdapter(
                 holder.recycler.adapter=headerAdapter
                 holder.recycler.layoutManager = LinearLayoutManager(holder.itemView.context,LinearLayoutManager.HORIZONTAL, false)
             })
-        }
-*/
+        }*/
     }
 
     override fun getItemCount(): Int {
@@ -65,6 +64,7 @@ class CatalogAdapter(
         item.run {
             clear()
             addAll(model)
+            removeAt(0)
         }
     }
 

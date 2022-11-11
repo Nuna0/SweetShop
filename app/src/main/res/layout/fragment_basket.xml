@@ -10,17 +10,23 @@
     <androidx.appcompat.widget.Toolbar
         android:id="@+id/toolbar"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="30dp"
         android:background="@color/white"
-        android:elevation="2dp"
-        app:title="Корзина"
-        app:titleTextAppearance="@style/Toolbar.TitleText" />
+        android:elevation="2dp">
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Корзина"
+            android:textSize="16sp"
+            android:textColor="@color/black"
+            android:gravity="center" />
+    </androidx.appcompat.widget.Toolbar>
 
     <androidx.core.widget.NestedScrollView
         android:id="@+id/scroll"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:visibility="gone">
+        android:visibility="visible">
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -40,8 +46,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="8dp"
-                android:layout_marginHorizontal="8dp"
-                >
+                android:layout_marginHorizontal="8dp">
 
                 <TextView
                     android:id="@+id/amount"
@@ -177,7 +182,7 @@
         android:layout_height="match_parent"
         android:background="@color/white"
         android:elevation="2dp"
-        android:visibility="visible"
+        android:visibility="gone"
         >
         <TextView
             android:id="@+id/title_empty"
@@ -202,12 +207,30 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/title_empty"
             app:layout_constraintVertical_bias="0"
+            app:layout_constraintHorizontal_bias="0.5"
             app:layout_constraintBottom_toBottomOf="parent"
             android:text="Перейдите в каталог и добавьте товары в заявку"
             android:textSize="14sp"
             android:textColor="@color/color_phone_write_button"
             android:layout_marginTop="8dp"
-            android:layout_marginHorizontal="100dp"/>
+            android:layout_marginHorizontal="100dp" />
+
+        <TextView
+            android:id="@+id/btn_go_to_catalog"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:background="@drawable/place_an_order_back"
+            app:layout_constraintTop_toBottomOf="@id/txt_go_to_catalog"
+            android:layout_marginTop="16dp"
+            app:layout_constraintStart_toStartOf="@id/txt_go_to_catalog"
+            app:layout_constraintEnd_toEndOf="@id/txt_go_to_catalog"
+            android:text="В каталог"
+            android:gravity="center_vertical|center_horizontal"
+            android:textSize="14sp"
+            android:textColor="@color/white"
+            android:padding="8dp"
+            android:layout_marginHorizontal="30dp"
+            />
 
 
     </androidx.constraintlayout.widget.ConstraintLayout>

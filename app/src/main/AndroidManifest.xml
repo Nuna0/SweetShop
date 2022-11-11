@@ -13,6 +13,9 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.SweetShop">
         <activity
+            android:name=".screens.OpenHeaderActivity"
+            android:exported="false" />
+        <activity
             android:name=".screens.MainActivity"
             android:exported="true">
             <intent-filter>

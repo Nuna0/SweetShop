@@ -1,10 +1,10 @@
 package com.example.sweetshop.repository
 
-import com.example.sweetshop.model.Catalog
-import com.example.sweetshop.model.Categories
-import com.example.sweetshop.model.MainModel
-import com.example.sweetshop.model.Products
+import com.example.sweetshop.model.*
 import com.example.sweetshop.network.RetrofitInstance
+import com.google.gson.JsonObject
+import okhttp3.ResponseBody
+import retrofit2.Call
 import retrofit2.Response
 
 class Repository {
@@ -12,6 +12,10 @@ class Repository {
 
     suspend fun getMainModel(): MainModel {
         return RetrofitInstance.api.getMainModel()
+    }
+
+    suspend fun sendOrder(/*bot_token:String,*/ chat_id: String,text:String,): Response<OrderModel> {
+        return RetrofitInstance.apiTgBot.sendOrder(/*bot_token,*/ chat_id,text)
     }
 
     /*suspend fun getCategories(): ArrayList<Categories> {
